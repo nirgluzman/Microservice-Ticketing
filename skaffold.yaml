@@ -1,0 +1,24 @@
+# skaffold.yaml
+# https://skaffold.dev/docs/references/yaml/
+
+apiVersion: skaffold/v4beta8
+kind: Config
+metadata:
+  name: ticketing
+
+manifests: # describes how the original manifests are hydrated, validated and transformed.
+  rawYaml: # defines the raw kubernetes resources.
+    - ./infra/k8s/*
+
+build: # describes how images are built
+  local:
+    push: false # should images be pushed to a registry such as Docker Hub.
+  artifacts: # describes the images to be built.
+    - image: nirgluzman/auth
+      context: auth # directory containing the artifact's sources.
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts' # a glob pattern to match local paths against.
+            dest: . # destination path in the container where the files should be synced to.
