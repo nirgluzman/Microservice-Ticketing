@@ -8,5 +8,9 @@ const app = express();
 // middleware to parse incoming JSON requests and put the parsed data in req.body
 app.use(json());
 
+app.get('/api/users/currentuser', (req, res) => {
+  res.send('Hi there!');
+});
+
 // start listening to incoming requests from a client
 app.listen(PORT, () => console.log(`Auth is up! Listening on port ${PORT}`));

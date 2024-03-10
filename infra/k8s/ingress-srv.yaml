@@ -1,0 +1,23 @@
+# https://kubernetes.github.io/ingress-nginx/
+# https://www.udemy.com/course/microservices-with-node-js-and-react/learn/lecture/26508852#questions/11640328
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-service
+  annotations:
+    nginx.ingress.kubernetes.io/use-regex: 'true' # enable regexp for path matches
+
+spec:
+  ingressClassName: nginx
+  rules: # routing rules, path based !
+    - host: ticketing.dev # when running on Docker Desktop, need to update hosts file - "C:\Windows\System32\drivers\etc\hosts"
+      http:
+        paths: # paths should be listed from the most specific ones !!
+          - path: /api/users/?(.*)
+            pathType: Prefix # https://kubernetes.io/docs/concepts/services-networking/ingress/#path-types
+            backend:
+              service:
+                name: auth-srv
+                port:
+                  number: 3000
