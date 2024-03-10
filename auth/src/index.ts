@@ -1,8 +1,6 @@
 import express from 'express';
 import { json } from 'body-parser';
 
-import 'colors';
-
 const PORT = process.env.PORT || 3000;
 
 const app = express();
@@ -11,4 +9,4 @@ const app = express();
 app.use(json());
 
 // start listening to incoming requests from a client
-app.listen(PORT, () => console.log(`Auth is up! Listening on port ${PORT}`.green));
+app.listen(PORT, () => console.log(`Auth is up! Listening on port ${PORT}`));

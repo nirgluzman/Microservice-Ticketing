@@ -4,7 +4,7 @@
   "description": "auth service",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node-dev src/index.ts"
+    "start": "ts-node-dev --poll src/index.ts"
   },
   "keywords": [],
   "author": "",
@@ -15,7 +15,6 @@
     "typescript": "^5.4.2"
   },
   "dependencies": {
-    "colors": "^1.4.0",
     "express": "^4.18.3"
   }
 }
