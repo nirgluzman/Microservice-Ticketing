@@ -1,0 +1,25 @@
+# https://github.com/eksctl-io/eksctl/tree/main/examples
+# eksctl create cluster -f cluster-config.yaml
+#
+# Note:
+# AWS automatically provisions and manages the EKS control plane across multiple AZs within the specified region.
+#
+---
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: ticketing-dev
+  region: us-east-1
+
+nodeGroups:
+  - name: ng
+    instanceType: t3a.medium
+    desiredCapacity: 3
+
+cloudWatch:
+  clusterLogging:
+    # enable specific types of cluster control plane logs
+    enableTypes: ['audit', 'authenticator', 'controllerManager']
+    # all supported types: "api", "audit", "authenticator", "controllerManager", "scheduler"
+    # supported special values: "*" and "all"
