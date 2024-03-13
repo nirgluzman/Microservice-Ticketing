@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: auth
-          image: nirgluzman/auth
+          image: us-central1-docker.pkg.dev/ticketing-dev-417012/ticketing-dev/auth
           ports:
             - containerPort: 3000
 ---

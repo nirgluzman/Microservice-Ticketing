@@ -11,10 +11,12 @@ manifests: # describes how the original manifests are hydrated, validated and tr
     - ./infra/k8s/*
 
 build: # describes how images are built
-  local:
-    push: false # should images be pushed to a registry such as Docker Hub.
+  # local:
+  #   push: false # should images be pushed to a registry.
+  googleCloudBuild:
+    projectId: ticketing-dev-417012 # the Google Cloud Project ID.
   artifacts: # describes the images to be built.
-    - image: nirgluzman/auth
+    - image: us-central1-docker.pkg.dev/ticketing-dev-417012/ticketing-dev/auth # the image name.
       context: auth # directory containing the artifact's sources.
       docker:
         dockerfile: Dockerfile
