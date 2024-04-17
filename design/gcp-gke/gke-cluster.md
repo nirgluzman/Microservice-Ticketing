@@ -2,6 +2,7 @@
 
 - Creating a zonal cluster
   https://cloud.google.com/kubernetes-engine/docs/how-to/creating-a-zonal-cluster
+  https://cloud.google.com/kubernetes-engine/docs/how-to/creating-a-regional-cluster
   https://cloud.google.com/sdk/gcloud/reference/container/clusters/create
 
 ```bash
@@ -13,10 +14,24 @@ gcloud container clusters create ticketing-dev \
     --disk-size "50"
 ```
 
-- Deleting a cluster
+- zone COMPUTE_ZONE -> the compute zone for the cluster control plane.
+- node-locations COMPUTE_ZONE: the zone for your node pool, such as us-central1-a.
+- CHANNEL: the type of release channel, which can be one of rapid, regular (default), stable, or
+  None.
+
+* Deleting a cluster
 
 ```bash
 gcloud container clusters delete --zone <name_of_zone> <name_of_your_cluster>
+```
+
+- Create an Autopilot cluster
+  https://cloud.google.com/kubernetes-engine/docs/how-to/creating-an-autopilot-cluster#gcloud
+
+```bash
+gcloud container clusters create-auto CLUSTER_NAME \
+    --location=LOCATION \
+    --project=PROJECT_ID
 ```
 
 - Reduce cluster node size to zero:
