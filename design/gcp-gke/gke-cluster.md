@@ -16,7 +16,7 @@ gcloud container clusters create ticketing-dev \
 - Deleting a cluster
 
 ```bash
-gcloud container clusters delete CLUSTER_NAME
+gcloud container clusters delete --zone <name_of_zone> <name_of_your_cluster>
 ```
 
 - Reduce cluster node size to zero:
