@@ -3,6 +3,9 @@ import express, { Request, Response } from 'express';
 // https://express-validator.github.io/docs/
 import { body, validationResult } from 'express-validator';
 
+import { RequestValidationError } from '../errors/request-validation-error';
+import { DatabaseConnectionError } from '../errors/database-connection-error';
+
 const router = express.Router();
 
 router.post(
@@ -19,14 +22,18 @@ router.post(
 
     // checking if Validator found errors
     if (!errors.isEmpty()) {
-      throw new Error('Invalid email or password'); // this will be caught by the errorHandler middleware.
+      // In JavaScript (not TypeScript)
+      // const error = new Error('Invalid request parameters');
+      // error.reasons = errors.array();
+      // throw error;
+
+      throw new RequestValidationError(errors.array());
     }
 
     const { email, password } = req.body;
 
     console.log('Creating a user...');
-
-    res.send({ email, password });
+    throw new DatabaseConnectionError();
   }
 );
 
