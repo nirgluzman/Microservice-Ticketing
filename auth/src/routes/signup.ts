@@ -19,7 +19,7 @@ router.post(
 
     // checking if Validator found errors
     if (!errors.isEmpty()) {
-      return res.status(400).send({ errors: errors.array() });
+      throw new Error('Invalid email or password'); // this will be caught by the errorHandler middleware.
     }
 
     const { email, password } = req.body;

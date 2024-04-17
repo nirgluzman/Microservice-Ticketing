@@ -28,11 +28,18 @@ gcloud container clusters delete --zone <name_of_zone> <name_of_your_cluster>
 - Create an Autopilot cluster
   https://cloud.google.com/kubernetes-engine/docs/how-to/creating-an-autopilot-cluster#gcloud
 
+  https://cloud.google.com/sdk/gcloud/reference/container/clusters/create-auto
+
+  https://stackoverflow.com/questions/67996806/gcp-kubernetes-autopilot-mode-what-is-the-free-tier
+  (cost optimization)
+
 ```bash
 gcloud container clusters create-auto CLUSTER_NAME \
     --location=LOCATION \
     --project=PROJECT_ID
 ```
+
+--location = Compute zone or region (e.g. us-central1-a or us-central1) for the cluster.
 
 - Reduce cluster node size to zero:
   https://www.udemy.com/course/microservices-with-node-js-and-react/learn/lecture/19102628#questions/10484812
@@ -69,7 +76,7 @@ gcloud artifacts repositories create ticketing-dev \
 - Setup ingress-nginx on GCP: https://kubernetes.github.io/ingress-nginx/
 
 ```bash
-kubectl apply -f
+kubectl apply -f \
 https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.10.0/deploy/static/provider/cloud/deploy.yaml
 ```
 

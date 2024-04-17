@@ -4,17 +4,17 @@
 
 https://github.com/nirgluzman/Microservice-Ticketing.git
 
-## General comments
+## Host file tweak
 
-- Host file tweak: it's a plain text file used to map host names to IP addresses.
+- It's a plain text file used to map host names to IP addresses.
 
-* file location on Windows: "C:\Windows\System32\drivers\etc\hosts"
+- File location on Windows: "C:\Windows\System32\drivers\etc\hosts"
 
 ```code
 127.0.0.1 posts.com
 34.123.145.27 ticketing.dev
 ```
 
-- Chrome SSL error page (HTTPS warning):
+## Chrome SSL error page (HTTPS warning)
 
-* `thisisunsafe` for bypassing chrome security warnings.
+- `thisisunsafe` for bypassing chrome security warnings.
