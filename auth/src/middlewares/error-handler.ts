@@ -9,18 +9,12 @@ export const errorHandler = (err: Error, req: Request, res: Response, next: Next
   if (err instanceof RequestValidationError) {
     console.log('handling this error as a request validation error');
 
-    // https://www.udemy.com/course/microservices-with-node-js-and-react/learn/lecture/37727290#overview
-    const formattedErrors = err.errors.map(error => {
-      if (error.type === 'field') {
-        return { message: error.msg, field: error.path };
-      }
-    });
-    return res.status(400).send({ errors: formattedErrors });
+    return res.status(err.statusCode).send({ errors: err.serializeErrors() });
   }
 
   if (err instanceof DatabaseConnectionError) {
     console.log('handling this error as a database connection error');
-    return res.status(500).send({ errors: [{ message: err.reason }] });
+    return res.status(err.statusCode).send({ errors: err.serializeErrors() });
   }
 
   console.log('handling this error as a generic error');
