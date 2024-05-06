@@ -1,4 +1,5 @@
 import express from 'express';
+import 'express-async-errors'; // catch errors at runtime without using try/catch blocks in your async functions.
 import { json } from 'body-parser';
 
 import { currentUserRouter } from './routes/current-user';
@@ -22,7 +23,7 @@ app.use(signoutRouter);
 app.use(signupRouter);
 
 // Throw an error if a request is made to an unknown route.
-app.all('*', () => {
+app.all('*', async (req, res) => {
   throw new NotFoundError();
 });
 
