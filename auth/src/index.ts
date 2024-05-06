@@ -7,6 +7,7 @@ import { signoutRouter } from './routes/signout';
 import { signupRouter } from './routes/signup';
 
 import { errorHandler } from './middlewares/error-handler';
+import { NotFoundError } from './errors/not-found-error';
 
 const PORT = process.env.PORT || 3000;
 
@@ -19,6 +20,11 @@ app.use(currentUserRouter);
 app.use(signinRouter);
 app.use(signoutRouter);
 app.use(signupRouter);
+
+// Throw an error if a request is made to an unknown route.
+app.all('*', () => {
+  throw new NotFoundError();
+});
 
 app.use(errorHandler);
 
